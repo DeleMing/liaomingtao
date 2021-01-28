@@ -12,6 +12,8 @@
         <module>io</module>
         <module>common</module>
         <module>kafka08</module>
+        <module>test</module>
+        <module>boot</module>
     </modules>
 
     <properties>
