@@ -17,8 +17,8 @@ import java.util.List;
  */
 public class ReadAvro {
 
-    private static final String INPUT_AVRO_FILE_PATH = "F:\\Users\\Thinkpad\\Downloads\\part-0-0.avro";
-    private static final String OUT_PUT_FILE_PATH = "F:\\Users\\Thinkpad\\Downloads\\test\\result.txt";
+    private static final String INPUT_AVRO_FILE_PATH = "F:\\Users\\Thinkpad\\Downloads\\avro-tools\\part-0-1.avro";
+    private static final String OUT_PUT_FILE_PATH = "F:\\Users\\Thinkpad\\Downloads\\avro-tools\\result.txt";
 
 
     public static void main(String[] args) throws IOException {
