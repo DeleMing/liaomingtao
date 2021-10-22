@@ -54,7 +54,7 @@ public class KafkaTools implements Serializable {
     private static Properties getKafkaProperties(Map conf) throws ClassNotFoundException {
         //conf = paramCheck(conf);
         Properties props = new Properties();
-        props.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, "shandong1:9092");
+        props.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, "yf225:9092,yf223:9092,yf21:9092");
         props.put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, Class.forName("org.apache.kafka.common.serialization.StringSerializer"));
         // props.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, Class.forName("org.apache.kafka.common.serialization.ByteArraySerializer"));
         props.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, Class.forName("org.apache.kafka.common.serialization.StringSerializer"));

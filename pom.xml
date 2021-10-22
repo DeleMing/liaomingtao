@@ -17,6 +17,7 @@
         <module>redis</module>
         <module>collection</module>
         <module>kafka11</module>
+        <module>redfish</module>
     </modules>
 
     <properties>

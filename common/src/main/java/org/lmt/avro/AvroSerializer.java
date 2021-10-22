@@ -173,7 +173,7 @@ public class AvroSerializer {
         byte[] returnstr = null;
 
         ByteArrayOutputStream out = new ByteArrayOutputStream();
-        // DatumWriter 将数据对象翻译成Encoder对象可以理解的类型
+        // DatumWriter 将数据对象翻译成Encoder对象可以理解的类型 
         DatumWriter<GenericRecord> write = new GenericDatumWriter<GenericRecord>(this.schema);
         // 然后由Encoder写到数据流。
         Encoder encoder = EncoderFactory.get().binaryEncoder(out, null);

@@ -23,12 +23,12 @@ public class Consumer11StringTest {
 
     private final KafkaConsumer<String, String> consumer;
 
-    private static final String OUT_PUT_FILE_PATH = "F:\\Users\\Thinkpad\\Downloads\\yuanshi.log";
+    private static final String OUT_PUT_FILE_PATH = "F:\\Users\\Thinkpad\\Downloads\\zhibiao.log";
 
     public Consumer11StringTest() {
         Properties props = new Properties();
-        props.put("bootstrap.servers", "192.168.30.42:9092,192.168.30.43:9092,192.168.30.44:9092");
-        props.put("zookeeper.connect", "192.168.30.42:2181");
+        props.put("bootstrap.servers", "192.168.70.86:9092,192.168.70.9:9092,192.168.70.87:9092");
+        props.put("zookeeper.connect", "192.168.70.87:2181");
         props.put("group.id", UUID.randomUUID().toString());
         props.put("enable.auto.commit", "false");
         props.put("zookeeper.session.timeout.ms", "10000");
@@ -45,19 +45,21 @@ public class Consumer11StringTest {
     }
 
     public void consume() {
-        consumer.subscribe(Arrays.asList("ods_all_metric"));
+        consumer.subscribe(Arrays.asList("cs_src_sz"));
         while (true) {
             ConsumerRecords<String, String> records = consumer.poll(100);
-            for (ConsumerRecord<String, String> record : records){
-                // if (record.value().contains("check_session_win")) {
-                    try {
-                        FileWriter fileWriter = new FileWriter(OUT_PUT_FILE_PATH, true);
-                        BufferedWriter bw = new BufferedWriter(fileWriter);
-                        bw.write(record.value() + "\n");
-                        bw.close();
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
+            for (ConsumerRecord<String, String> record : records) {
+                String value = record.value();
+                // if (value.contains("icmp") && value.contains("192.168.30.11")) {
+                try {
+                    FileWriter fileWriter = new FileWriter(OUT_PUT_FILE_PATH, true);
+                    BufferedWriter bw = new BufferedWriter(fileWriter);
+                    System.out.println(value);
+                    bw.write(value + "\n");
+                    bw.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
                 // }
             }
         }
