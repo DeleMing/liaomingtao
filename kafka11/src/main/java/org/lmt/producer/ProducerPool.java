@@ -5,7 +5,6 @@ import java.io.IOException;
 import java.io.Serializable;
 import java.util.Map;
 
-
 /**
  * @author Thinkpad
  */
@@ -15,8 +14,8 @@ public class ProducerPool implements Closeable, Serializable {
 
     private Producer[] pool;
 
-    private int threadNum = 15;
-    private int size = 65535;
+    private static final int THREAD_NUM = 15;
+    private static final int SIZE = 65535;
 
     /**
      * 轮循id
@@ -25,14 +24,14 @@ public class ProducerPool implements Closeable, Serializable {
 
     private static ProducerPool instance = null;
 
-    public static ProducerPool getInstance(Map map) {
+    public static ProducerPool getInstance(Map<String, Object> map) {
         if (instance == null) {
             instance = new ProducerPool(map);
         }
         return ProducerPool.instance;
     }
 
-    private ProducerPool(Map conf) {
+    private ProducerPool(Map<String, Object> conf) {
         init(conf);
     }
 
@@ -41,18 +40,18 @@ public class ProducerPool implements Closeable, Serializable {
     }
 
 
-    public void init(Map conf) {
-        pool = new Producer[threadNum];
-        for (int i = 0; i < threadNum; i++) {
+    public void init(Map<String, Object> conf) {
+        pool = new Producer[THREAD_NUM];
+        for (int i = 0; i < THREAD_NUM; i++) {
             pool[i] = new Producer(conf);
         }
     }
 
     public Producer getProducer() {
-        if (id > size) {
+        if (id > SIZE) {
             id = 0;
         }
-        return pool[id++ % threadNum];
+        return pool[id++ % THREAD_NUM];
     }
 
     @Override

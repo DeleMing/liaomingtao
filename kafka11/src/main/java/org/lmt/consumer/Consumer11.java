@@ -1,34 +1,33 @@
 package org.lmt.consumer;
 
-import lombok.extern.slf4j.Slf4j;
-import org.apache.avro.generic.GenericRecord;
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
 import org.apache.kafka.clients.consumer.ConsumerRecord;
 import org.apache.kafka.clients.consumer.ConsumerRecords;
 import org.apache.kafka.clients.consumer.KafkaConsumer;
-import org.lmt.avro.AvroDeserializerFactory;
 
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.Properties;
 import java.util.UUID;
 
 /**
  * @author: LiaoMingtao
- * @date: 2021/3/24
+ * @date: 2022/8/24
  */
-@Slf4j
-public class Consumer11StringTest {
+public class Consumer11 {
 
     private final KafkaConsumer<String, String> consumer;
 
-    private static final String OUT_PUT_FILE_PATH = "F:\\Users\\Thinkpad\\Downloads\\zhibiao.log";
+    private static final String OUT_PUT_FILE_PATH = "F:\\Users\\76149\\Downloads\\zhibiao.log";
 
-    public Consumer11StringTest() {
+    public Consumer11() {
         Properties props = new Properties();
-        props.put("bootstrap.servers", "192.168.70.86:9092,192.168.70.9:9092,192.168.70.87:9092");
-        props.put("zookeeper.connect", "192.168.70.87:2181");
+        props.put("bootstrap.servers", "192.168.70.109:9092,192.168.70.110:9092,192.168.70.111:9092");
+        props.put("zookeeper.connect", "192.168.70.109:2181,192.168.70.110:2181,192.168.70.111:2181");
         props.put("group.id", UUID.randomUUID().toString());
         props.put("enable.auto.commit", "false");
         props.put("zookeeper.session.timeout.ms", "10000");
@@ -45,27 +44,24 @@ public class Consumer11StringTest {
     }
 
     public void consume() {
-        consumer.subscribe(Arrays.asList("cs_src_sz"));
+        consumer.subscribe(Collections.singletonList("ods_all_metric"));
         while (true) {
             ConsumerRecords<String, String> records = consumer.poll(100);
             for (ConsumerRecord<String, String> record : records) {
                 String value = record.value();
-                // if (value.contains("icmp") && value.contains("192.168.30.11")) {
                 try {
                     FileWriter fileWriter = new FileWriter(OUT_PUT_FILE_PATH, true);
                     BufferedWriter bw = new BufferedWriter(fileWriter);
-                    System.out.println(value);
                     bw.write(value + "\n");
                     bw.close();
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
-                // }
             }
         }
     }
 
     public static void main(String[] args) {
-        new Consumer11StringTest().consume();
+        new Consumer11().consume();
     }
 }

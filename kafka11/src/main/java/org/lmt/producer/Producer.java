@@ -1,5 +1,6 @@
 package org.lmt.producer;
 
+import lombok.extern.slf4j.Slf4j;
 import org.apache.kafka.clients.producer.KafkaProducer;
 import org.apache.kafka.clients.producer.ProducerRecord;
 
@@ -10,53 +11,52 @@ import java.util.Map;
 /**
  * @author Thinkpad
  */
+@Slf4j
 public class Producer implements Serializable {
     private static final long serialVersionUID = -1L;
 
-    private Map conf;
-    private KafkaProducer<String, byte[]> producer;
-    private KafkaProducer<String, String> producerStr;
+    private final KafkaProducer<String, byte[]> producer;
+    private final KafkaProducer<String, String> noAvroProducer;
 
 
-    static Producer testProducer;
-
-    public static synchronized Producer getInstance(Map conf) {
-        if (testProducer == null) {
-            testProducer = new Producer(conf);
-        }
-        return testProducer;
-    }
-
-
-    public Producer(Map conf) {
-        this.conf = conf;
+    public Producer(Map<String, Object> conf) {
         try {
-            producerStr = KafkaTools.getStrProducer(conf);
-        } catch (Exception ex) {
-           System.err.println("初始化Kafka失败,系统自动退出!");
-           ex.printStackTrace();
+            producer = KafkaTools.getAvroProducer(conf);
+            noAvroProducer = KafkaTools.getStrProducer(conf);
+        } catch (Exception e) {
+            log.error("初始化Kafka失败,系统自动退出!", e);
             throw new RuntimeException("初始化Kafka失败,系统自动退出!");
         }
+
     }
 
-  
-
-    public void sendLogAvro(String topic, byte[] logAvroByte) {
+    /**
+     * 发送avro字节数组数据
+     *
+     * @param topic    topic名称
+     * @param avroByte avro字节数组
+     */
+    public void sendAvro(String topic, byte[] avroByte) {
         try {
-            producer.send(new ProducerRecord<>(topic, null, logAvroByte));
-        } catch (Exception e) {
-           System.err.println(e.toString());
-        }
-    }
-
-    public void sendStr(String topic, String str) {
-        try {
-            producerStr.send(new ProducerRecord<>(topic, null, str));
+            producer.send(new ProducerRecord<>(topic, null, avroByte));
         } catch (Exception e) {
             System.err.println(e.toString());
         }
     }
 
+    /**
+     * 发送字符串数据
+     *
+     * @param topic topic名称
+     * @param str   字符串数据
+     */
+    public void sendStr(String topic, String str) {
+        try {
+            noAvroProducer.send(new ProducerRecord<>(topic, null, str));
+        } catch (Exception e) {
+            System.err.println(e.toString());
+        }
+    }
 
 
 }
