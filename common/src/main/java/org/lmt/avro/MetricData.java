@@ -1,5 +1,6 @@
 package org.lmt.avro;
 
+import com.alibaba.fastjson.annotation.JSONField;
 import lombok.Data;
 import org.joda.time.DateTime;
 
@@ -15,6 +16,7 @@ public class MetricData implements Serializable {
     /**
      * metricSetName 指标类型
      */
+    @JSONField(name = "metricsetname")
     private String metricSetName;
     /**
      * timestamp 时间戳
