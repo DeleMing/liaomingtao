@@ -11,16 +11,16 @@
     <modules>
         <module>common</module>
         <module>kafka11</module>
-<!--        <module>io</module>-->
-<!--        <module>kafka08</module>-->
-<!--        <module>test</module>-->
-<!--        <module>boot</module>-->
-<!--        <module>redis</module>-->
-<!--        <module>collection</module>-->
-<!--        <module>redfish</module>-->
-<!--        <module>rabbitmq</module>-->
-<!--        <module>demo</module>-->
-<!--        <module>bus</module>-->
+        <module>boot</module>
+        <!--        <module>io</module>-->
+        <!--        <module>kafka08</module>-->
+        <!--        <module>test</module>-->
+        <!--        <module>redis</module>-->
+        <!--        <module>collection</module>-->
+        <!--        <module>redfish</module>-->
+        <!--        <module>rabbitmq</module>-->
+        <!--        <module>demo</module>-->
+        <!--        <module>bus</module>-->
     </modules>
 
     <properties>
@@ -34,14 +34,11 @@
             <artifactId>fastjson</artifactId>
             <version>1.2.73</version>
         </dependency>
-
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
             <version>1.18.24</version>
         </dependency>
-
-
         <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-api</artifactId>
