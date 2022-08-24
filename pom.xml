@@ -12,14 +12,9 @@
         <module>common</module>
         <module>kafka11</module>
         <module>boot</module>
-        <!--        <module>io</module>-->
-        <!--        <module>kafka08</module>-->
-        <!--        <module>test</module>-->
-        <!--        <module>redis</module>-->
-        <!--        <module>collection</module>-->
-        <!--        <module>redfish</module>-->
-        <!--        <module>rabbitmq</module>-->
-        <!--        <module>demo</module>-->
+        <module>io</module>
+        <module>redis</module>
+        <module>collection</module>
         <!--        <module>bus</module>-->
     </modules>
 
