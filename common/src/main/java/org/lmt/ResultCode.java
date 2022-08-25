@@ -42,6 +42,9 @@ import org.lmt.http.ErrorType;
  * @date: 2019/12/3
  */
 public enum ResultCode implements ErrorType {
+    /**
+     * 状态码
+     */
     SUCCESS(0, "成功"),
     SYSTEM_BUSY(-1, "系统防繁忙"),
     SYSTEM_ERROR(-2, "未知异常"),

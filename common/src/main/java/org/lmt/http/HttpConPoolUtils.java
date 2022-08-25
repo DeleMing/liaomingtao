@@ -70,7 +70,7 @@ public class HttpConPoolUtils {
                     ))
                     .build();
         } catch (NoSuchAlgorithmException | KeyManagementException | KeyStoreException e) {
-            log.error("", e);
+            log.error("httpClient创建连接失败", e);
             tmp = httpClientBuilder.build();
         }
         HTTP_CLIENT = tmp;
@@ -82,9 +82,10 @@ public class HttpConPoolUtils {
      * @param url         提交的地址
      * @param content     提交的内容字符串
      * @param contentType 默认传null则为"application/x-www-form-urlencoded"
-     * @return
+     * @return post请求返回的字符串
+     * @throws IOException io异常
      */
-    public static String post(String url, String content, String contentType) throws Exception {
+    public static String post(String url, String content, String contentType) throws IOException {
         return post(url, CHARSET, content, contentType);
     }
 
@@ -95,9 +96,10 @@ public class HttpConPoolUtils {
      * @param charset     字符集，用于解析返回的字符串
      * @param content     提交的内容字符串
      * @param contentType 默认传null则为"application/x-www-form-urlencoded"
-     * @return 返回字符串
+     * @return post请求返回的字符串
+     * @throws IOException io异常
      */
-    public static String post(String url, String charset, String content, String contentType) throws Exception {
+    public static String post(String url, String charset, String content, String contentType) throws IOException {
         byte[] resp = post(url, content.getBytes(charset), contentType);
         if (null == resp) {
             return null;
@@ -110,9 +112,10 @@ public class HttpConPoolUtils {
      *
      * @param url     提交的地址
      * @param content 提交的内容字符串
-     * @return 返回字符串
+     * @return post请求返回的字符串
+     * @throws IOException io异常
      */
-    public static String post(String url, String content) throws Exception {
+    public static String post(String url, String content) throws IOException {
         return post(url, CHARSET, content, "application/x-www-form-urlencoded");
     }
 
@@ -122,9 +125,10 @@ public class HttpConPoolUtils {
      * @param url     提交的地址
      * @param content 提交的内容字符串
      * @param headers 自定义请求头
-     * @return
+     * @return post请求返回的字符串
+     * @throws IOException io异常
      */
-    public static String post(String url, String content, Header... headers) throws Exception {
+    public static String post(String url, String content, Header... headers) throws IOException {
         return post(url, CHARSET, content, headers);
     }
 
@@ -135,9 +139,10 @@ public class HttpConPoolUtils {
      * @param charset 字符集，用于解析返回的字符串
      * @param content 提交的内容字符串
      * @param headers 自定义请求头
-     * @return
+     * @return 返回字符串
+     * @throws IOException io异常
      */
-    public static String post(String url, String charset, String content, Header... headers) throws Exception {
+    public static String post(String url, String charset, String content, Header... headers) throws IOException {
         byte[] resp = post(url, new ByteArrayEntity(content.getBytes(charset)), headers);
         if (null == resp) {
             return null;
@@ -152,8 +157,9 @@ public class HttpConPoolUtils {
      * @param content     提交的内容字节数据
      * @param contentType 默认传null则为"application/x-www-form-urlencoded"
      * @return 返回字节数组
+     * @throws IOException io异常
      */
-    public static byte[] post(String url, byte[] content, String contentType) throws Exception {
+    public static byte[] post(String url, byte[] content, String contentType) throws IOException {
         return post(url, new ByteArrayEntity(content), contentType);
     }
 
@@ -164,13 +170,23 @@ public class HttpConPoolUtils {
      * @param requestEntity 封装好的请求实体
      * @param contentType   默认传null则为"application/x-www-form-urlencoded"
      * @return 返回字节数组
+     * @throws IOException io异常
      */
-    public static byte[] post(String url, HttpEntity requestEntity, String contentType) throws Exception {
+    public static byte[] post(String url, HttpEntity requestEntity, String contentType) throws IOException {
         return post(url, requestEntity, new BasicHeader("Content-Type",
                 contentType == null ? "application/x-www-form-urlencoded" : contentType));
     }
 
-    public static byte[] post(String url, HttpEntity requestEntity, Header... headers) throws Exception {
+    /**
+     * 提交POST请求，并返回字节数组
+     *
+     * @param url           提交的地址
+     * @param requestEntity 封装好的请求实体
+     * @param headers       请求头
+     * @return 返回字节数组
+     * @throws IOException io异常
+     */
+    public static byte[] post(String url, HttpEntity requestEntity, Header... headers) throws IOException {
         HttpPost post = new HttpPost(url);
         // 设置为长连接，服务端判断有此参数就不关闭连接。
         post.setHeader("Connection", "Keep-Alive");
@@ -185,12 +201,20 @@ public class HttpConPoolUtils {
      * GET请求，并返回字符串
      *
      * @param url 提交的地址
-     * @return
+     * @return 请求返回的字符串
      */
     public static String get(String url) throws IOException {
         return get(url, null);
     }
 
+    /**
+     * GET请求，并返回字符串
+     *
+     * @param url    提交的地址
+     * @param header 请求头
+     * @return 请求返回的字符串
+     * @throws IOException io异常
+     */
     public static String get(String url, Header[] header) throws IOException {
         HttpGet get = new HttpGet(url);
         // 设置为长连接，服务端判断有此参数就不关闭连接。

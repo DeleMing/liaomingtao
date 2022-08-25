@@ -24,7 +24,7 @@ public class JsonMapper {
 
     private static final Logger logger = LoggerFactory.getLogger(JsonMapper.class);
 
-    private ObjectMapper mapper;
+    private final ObjectMapper mapper;
 
     private JsonMapper(Include include) {
         mapper = new ObjectMapper();

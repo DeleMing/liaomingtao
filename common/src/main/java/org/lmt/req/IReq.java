@@ -17,7 +17,7 @@ public interface IReq {
     /**
      * 生成urlParams
      *
-     * @return
+     * @return 实体转url编码
      */
     default String toUrlParams() {
         StringBuilder urlString = new StringBuilder(512);
@@ -59,8 +59,8 @@ public interface IReq {
     /**
      * 进行URL编码
      *
-     * @param str
-     * @return
+     * @param str 原始字符串
+     * @return url编码后字符串
      */
     default String urlEncode(String str) {
         try {

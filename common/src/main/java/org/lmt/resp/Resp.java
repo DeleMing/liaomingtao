@@ -10,8 +10,7 @@ import org.lmt.http.ErrorType;
 import java.time.Instant;
 
 /**
- * @author googe (<a href="mailto:gujunling@zorkdata.com.cn">gujunling@zorkdata.com.cn</a>)
- * @author zhuzhigang (<a href="mailto:zhuzhigang@zorkdata.com.cn">zhuzhigang@zorkdata.com.cn</a>)
+ * @author liaomingtao
  * @date 2019/12/26
  * <p>
  * 请求的返回模型，所有rest正常都返回该类的对象
@@ -52,7 +51,7 @@ public class Resp<T> implements BaseResp<T> {
         return new Resp<>();
     }
 
-    public static <T> Resp success() {
+    public static <T> Resp<T> success() {
         Resp<T> r = createEmptyResult();
         r.setResultCode(ResultCode.SUCCESS);
         r.setCode(ResultCode.SUCCESS.getCode());

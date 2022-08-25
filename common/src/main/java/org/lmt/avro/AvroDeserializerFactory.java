@@ -13,30 +13,25 @@ public class AvroDeserializerFactory {
     private static AvroDeserializer logs = null;
     private static AvroDeserializer metrics = null;
 
-    public static void init() {
-        logs = null;
-        metrics = null;
-    }
-
     /**
      * getLogsDeserializer
      *
      * @return AvroDeserializer
      */
     public static AvroDeserializer getLogsDeserializer() {
-        if (logs == null) {
+        if (null == logs) {
             logs = new AvroDeserializer(AvroSchemaDef.ZORK_LOG_SCHEMA);
         }
         return logs;
     }
 
     /**
-     * getLogsDeserializer
+     * getMetricDeserializer
      *
      * @return AvroDeserializer
      */
     public static AvroDeserializer getMetricDeserializer() {
-        if (metrics == null) {
+        if (null == metrics) {
             metrics = new AvroDeserializer(AvroSchemaDef.ZORK_METRIC_SCHEMA);
         }
         return metrics;

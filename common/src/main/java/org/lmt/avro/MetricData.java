@@ -51,7 +51,7 @@ public class MetricData implements Serializable {
 
     public void setDimensions(Map<String, String> dimensions) {
         this.dimensions = new HashMap<>(50);
-        for (Map.Entry entry : dimensions.entrySet()) {
+        for (Map.Entry<String, String> entry : dimensions.entrySet()) {
             this.dimensions.put(String.valueOf(entry.getKey()), String.valueOf(entry.getValue()));
         }
     }
@@ -62,7 +62,7 @@ public class MetricData implements Serializable {
 
     public void setMetrics(Map<String, Double> measures) {
         this.metrics = new HashMap<>(50);
-        for (Map.Entry entry : measures.entrySet()) {
+        for (Map.Entry<String, Double> entry : measures.entrySet()) {
             this.metrics.put(String.valueOf(entry.getKey()), Double.valueOf(String.valueOf(entry.getValue())));
         }
     }

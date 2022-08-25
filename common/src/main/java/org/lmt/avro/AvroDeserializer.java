@@ -24,7 +24,7 @@ public class AvroDeserializer {
     public static final String FIELDS = "fields";
     public static final String NAME = "name";
 
-    private Schema schema;
+    private final Schema schema;
     private String[] keys;
     private JSONObject jsonObject;
     private JSONArray jsonArray;

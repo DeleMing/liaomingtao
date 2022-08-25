@@ -3,7 +3,7 @@ package org.lmt.http;
 import com.fasterxml.jackson.core.type.TypeReference;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.http.Header;
-import org.lmt.GlobalConsts;
+import org.lmt.GlobalConstant;
 import org.lmt.ResultCode;
 import org.lmt.json.JsonUtils;
 import org.lmt.req.IReq;
@@ -64,8 +64,8 @@ public class HttpClient extends AbstractHttpSdkClient {
         String uri = path;
         if (null == baseUrl) {
             return uri;
-        } else if (baseUrl.endsWith(GlobalConsts.SLASH) && !path.startsWith(GlobalConsts.SLASH)) {
-            uri = baseUrl + GlobalConsts.SLASH + path;
+        } else if (baseUrl.endsWith(GlobalConstant.SLASH) && !path.startsWith(GlobalConstant.SLASH)) {
+            uri = baseUrl + GlobalConstant.SLASH + path;
         } else {
             uri = baseUrl + path;
         }

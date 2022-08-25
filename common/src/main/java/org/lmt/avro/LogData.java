@@ -83,7 +83,7 @@ public class LogData implements Serializable {
 
     public void setDimensions(Map<String, String> dimensions) {
         this.dimensions = new HashMap<>(50);
-        for (Map.Entry entry : dimensions.entrySet()) {
+        for (Map.Entry<String, String> entry : dimensions.entrySet()) {
             this.dimensions.put(String.valueOf(entry.getKey()), String.valueOf(entry.getValue()));
         }
     }
@@ -94,7 +94,7 @@ public class LogData implements Serializable {
 
     public void setMeasures(Map<String, Double> measures) {
         this.measures = new HashMap<>(50);
-        for (Map.Entry entry : measures.entrySet()) {
+        for (Map.Entry<String, Double> entry : measures.entrySet()) {
             this.measures.put(String.valueOf(entry.getKey()), Double.valueOf(String.valueOf(entry.getValue())));
         }
     }
@@ -105,7 +105,7 @@ public class LogData implements Serializable {
 
     public void setNormalFields(Map<String, String> normalFields) {
         this.normalFields = new HashMap<>(50);
-        for (Map.Entry entry : normalFields.entrySet()) {
+        for (Map.Entry<String, String> entry : normalFields.entrySet()) {
             this.normalFields.put(String.valueOf(entry.getKey()), String.valueOf(entry.getValue()));
         }
     }

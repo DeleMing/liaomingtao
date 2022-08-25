@@ -111,7 +111,7 @@ public abstract class AbstractHttpSdkClient implements ISdkClient {
     private Header[] buildReqHeaders(Header[] headers) {
         ArrayList<Header> headerList = new ArrayList<>();
         if (headers != null && headers.length > 0) {
-            List tmpHeaderList = java.util.Arrays.asList(headers);
+            List<Header> tmpHeaderList = java.util.Arrays.asList(headers);
             headerList.addAll(tmpHeaderList);
         }
         headerList.add(new BasicHeader("content-Type", "application/json"));
@@ -133,7 +133,6 @@ public abstract class AbstractHttpSdkClient implements ISdkClient {
         }
     }
 
-    @SuppressWarnings("all")
     final protected String urlDecode(String encodeStr) {
         try {
             return URLDecoder.decode(encodeStr, "utf-8");
