@@ -16,11 +16,8 @@ import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClientBuilder;
 import org.apache.http.impl.client.HttpClients;
 import org.apache.http.util.EntityUtils;
-import org.neo4j.cypher.internal.compiler.v3_1.codegen.ir.expressions.Division;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import sun.tools.tree.AndExpression;
-import sun.tools.tree.OrExpression;
 
 import java.io.*;
 import java.net.*;

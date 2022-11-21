@@ -19,7 +19,7 @@ import java.util.List;
  */
 public class ReadFile {
 
-    private static final String INPUT_AVRO_FILE_PATH = "F:\\Users\\Thinkpad\\Downloads\\part-0-0.avro";
+    private static final String INPUT_AVRO_FILE_PATH = "F:\\Users\\Thinkpad\\Downloads\\info.txt";
     private static final String OUT_PUT_FILE_PATH = "E:\\test.log";
 
     /**

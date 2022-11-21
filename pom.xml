@@ -15,6 +15,9 @@
         <module>io</module>
         <module>redis</module>
         <module>collection</module>
+        <module>influxdb</module>
+        <module>tool</module>
+        <module>rabbitmq</module>
         <!--        <module>bus</module>-->
     </modules>
 
@@ -43,6 +46,11 @@
             <groupId>ch.qos.logback</groupId>
             <artifactId>logback-classic</artifactId>
             <version>1.2.3</version>
+        </dependency>
+        <dependency>
+            <groupId>cn.hutool</groupId>
+            <artifactId>hutool-all</artifactId>
+            <version>5.8.3</version>
         </dependency>
     </dependencies>
 
