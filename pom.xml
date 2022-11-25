@@ -18,6 +18,7 @@
         <module>influxdb</module>
         <module>tool</module>
         <module>rabbitmq</module>
+        <module>elasticsearch</module>
         <!--        <module>bus</module>-->
     </modules>
 
