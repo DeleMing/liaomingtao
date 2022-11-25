@@ -19,6 +19,7 @@
         <module>tool</module>
         <module>rabbitmq</module>
         <module>elasticsearch</module>
+        <module>thread</module>
         <!--        <module>bus</module>-->
     </modules>
 
